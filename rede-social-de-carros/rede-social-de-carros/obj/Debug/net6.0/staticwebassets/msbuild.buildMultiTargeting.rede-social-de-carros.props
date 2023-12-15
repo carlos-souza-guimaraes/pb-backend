@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\rede-social-de-carros.props" />
+</Project>
