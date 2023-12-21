@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros\\rede-social-de-carros.csproj": {}
+    "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros.csproj": {}
   },
   "projects": {
-    "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros\\rede-social-de-carros.csproj": {
+    "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros\\rede-social-de-carros.csproj",
+        "projectUniqueName": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros.csproj",
         "projectName": "rede-social-de-carros",
-        "projectPath": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros\\rede-social-de-carros.csproj",
+        "projectPath": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros\\obj\\",
+        "outputPath": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",

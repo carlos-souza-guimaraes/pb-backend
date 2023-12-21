@@ -1,100 +1,171 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using rede_social_de_carros.Data;
 using rede_social_de_carros.Models;
 
 namespace rede_social_de_carros.Controllers
 {
+    [Authorize]
     public class AutomoveisController : Controller
     {
-        // GET: HomeController1
-        public ActionResult Index()
+        private AutomovelService _automovelService;
+        private UsuarioService _usuarioService;
+
+        public AutomoveisController(AutomovelService automovelService, UsuarioService usuarioService) : base()
         {
-            Loader.ObterAutomoveis();
-            var automoveis = AutomovelService.ObterLista();
+            _automovelService = automovelService;
+            _usuarioService = usuarioService;
+        }
+
+        // GET: Automoveis
+        public async Task<IActionResult> Index()
+        {
+            var currentUser = User.Identity.Name;
+            var automoveis = _automovelService.ObterTodos()
+                .Result
+                .Where(p => p.Usuario.UserName == currentUser);
             return View(automoveis);
         }
 
-        // GET: HomeController1/Details/5
-        public ActionResult Details(int id)
+        // GET: Automoveis/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            var automoveis = AutomovelService.ObterLista().Find(p => p.Id == id.ToString());
-            return View(automoveis);
+            if (id == null || await _automovelService.ObterTodos() == null)
+            {
+                return NotFound();
+            }
+
+            var automovel = await _automovelService.ObterPorId((int)id);
+
+            if (automovel == null)
+            {
+                return NotFound();
+            }
+
+            return View(automovel);
         }
 
-        // GET: HomeController1/Create
-        public ActionResult Create()
+        // GET: Automoveis/Create
+        public IActionResult Create()
         {
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id");
             return View();
         }
 
-        // POST: HomeController1/Create
+        // POST: Automoveis/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([Bind("Id,UsuarioId,NomeAutomovel,Fabricante,Modelo,AnoDoAutomovel,Valor,Original,ImageUri")] Automovel automovel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                Loader.AdicionarAutomovel(new Automovel
+                _automovelService.Adicionar(automovel);
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id");
+            return View(automovel);
+        }
+
+        // GET: Automoveis/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _automovelService.ObterTodos() == null)
+            {
+                return NotFound();
+            }
+
+            var automovel = await _automovelService.ObterPorId((int)id);
+
+            if (automovel == null)
+            {
+                return NotFound();
+            }
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id");
+            return View(automovel);
+        }
+
+        // POST: Automoveis/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UsuarioId,NomeAutomovel,Fabricante,Modelo,AnoDoAutomovel,Valor,Original,ImageUri")] Automovel automovel)
+        {
+            if (id != automovel.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    Id = collection["Id"],
-                    UsuarioId = collection["UsuarioId"],
-                    NomeAutomovel = collection["NomeAutomovel"],
-                    Fabricante = collection["Fabricante"],
-                    Modelo = collection["Modelo"],
-                    AnoDoAutomovel = int.Parse(collection["AnoDoAutomovel"]),
-                    Valor = int.Parse(collection["Valor"]),
-                    Original = collection["Original"].Contains("true"),
-                    Pecas = new Dictionary<string, string>(),
-                    ImageUris = new List<string>() { "" }
-                });
+                    await _automovelService.Editar(automovel);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AutomovelExists(automovel.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id");
+            return View(automovel);
         }
 
-        // GET: HomeController1/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Automoveis/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null || await _automovelService.ObterTodos() == null)
+            {
+                return NotFound();
+            }
+
+            var automovel = await _automovelService.ObterPorId((int)id);
+            if (automovel == null)
+            {
+                return NotFound();
+            }
+
+            return View(automovel);
         }
 
-        // POST: HomeController1/Edit/5
-        [HttpPost]
+        // POST: Automoveis/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
+            if (_automovelService.ObterTodos() == null)
             {
-                return RedirectToAction(nameof(Index));
+                return Problem("Entity set 'ApplicationDbContext.Automoveis'  is null.");
             }
-            catch
+            var automovel = await _automovelService.ObterPorId((int)id);
+            if (automovel != null)
             {
-                return View();
+                await _automovelService.Deletar(automovel);
             }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: HomeController1/Delete/5
-        public ActionResult Delete(int id)
+        private bool AutomovelExists(int id)
         {
-            return View();
-        }
-
-        // POST: HomeController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var automoveis = _automovelService.ObterTodos().Result;
+            return (automoveis.Any(e => e.Id == id));
         }
     }
 }

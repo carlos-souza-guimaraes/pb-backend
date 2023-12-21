@@ -9,81 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = rede_social_de_carros
 build_property.RootNamespace = rede_social_de_carros
-build_property.ProjectDir = F:\..Engenharia de Software\PROJETOS\Infnet\pb\pb-backend\rede-social-de-carros\rede-social-de-carros\
+build_property.ProjectDir = F:\..Engenharia de Software\PROJETOS\Infnet\pb\pb-backend\rede-social-de-carros\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\..Engenharia de Software\PROJETOS\Infnet\pb\pb-backend\rede-social-de-carros\rede-social-de-carros
+build_property.MSBuildProjectDirectory = F:\..Engenharia de Software\PROJETOS\Infnet\pb\pb-backend\rede-social-de-carros
 build_property._RazorSourceGeneratorDebug = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Areas/Identity/Pages/_ViewStart.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Automoveis/Create.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Automoveis/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b21vdmVpc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Automoveis/Details.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Automoveis/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b21vdmVpc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Automoveis/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b21vdmVpc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Automoveis/Index.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Automoveis/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b21vdmVpc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Automoveis/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b21vdmVpc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Home/Index.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Home/Privacy.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Posts/Create.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Posts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Posts/Details.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Posts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Posts/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Posts/Index.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Posts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Posts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Shared/Error.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Shared/_LoginPartial.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Shared/_ValidationScriptsPartial.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Usuarios/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Usuarios/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Usuarios/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/_ViewImports.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/_ViewStart.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/rede-social-de-carros/Views/Shared/_Layout.cshtml]
+[F:/..Engenharia de Software/PROJETOS/Infnet/pb/pb-backend/rede-social-de-carros/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5ejqytjc6n

@@ -1,19 +1,28 @@
-﻿namespace rede_social_de_carros.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace rede_social_de_carros.Models
 {
     public class Post
     {
-        public string Id { get; set; }
+
+        public int Id { get; set; }
+        public Usuario? Usuario { get; set; }
+        [ForeignKey("UsuarioId")]
         public string UsuarioId { get; set; }
-        public string DataPublicacao { get; set; }
-        public int Curtidas { get; set; }
+        public DateTime DataPublicacao { get; private set; }
+        public int Curtidas { get; private set; } = 0;
         public string ImagemUri { get; set; }
         public string Titulo { get; set; }
         public string Conteudo { get; set; }
 
-        public override string ToString()
+        public void AdicionarCurtida()
         {
-            return $"\n{Id};{UsuarioId};{DataPublicacao};{Curtidas};{ImagemUri};{Titulo};{Conteudo}";
+            Curtidas++;
         }
 
+        public void StampTime()
+        {
+            DataPublicacao = DateTime.Now;
+        }
     }
 }

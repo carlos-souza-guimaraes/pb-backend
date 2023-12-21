@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jrBlfeBosdvl9da05O3Kytr31VCP2nFnNfo/BawFbUTXHg8NjNUf9fa8NcVlvnmWJVQYd3GeXddIf6pQ9TckSA==",
+  "dgSpecHash": "q1lRLaHEoNd+ziPu9L7P2sel5SNacUb4MZiPVEwBVTMs7X8bkX9kIsANOnHHn6Kd3PkWaAv0xE1Sh39AJFZFgA==",
   "success": true,
-  "projectFilePath": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros\\rede-social-de-carros.csproj",
+  "projectFilePath": "F:\\..Engenharia de Software\\PROJETOS\\Infnet\\pb\\pb-backend\\rede-social-de-carros\\rede-social-de-carros.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

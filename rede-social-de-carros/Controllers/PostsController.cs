@@ -1,97 +1,173 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using rede_social_de_carros.Data;
 using rede_social_de_carros.Models;
 
 namespace rede_social_de_carros.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
-        // GET: PostsController
-        public ActionResult Index()
+        private PostService _postService;
+        private UsuarioService _usuarioService;
+
+        public PostsController(PostService postService, UsuarioService usuarioService) : base()
         {
-            Loader.ObterPosts();
-            var posts = PostService.ObterLista();
+            _postService = postService;
+            _usuarioService = usuarioService;
+        }
+
+        // GET: Posts
+        public async Task<IActionResult> Index()
+        {
+
+            var currentUser = User.Identity.Name;
+            var posts = _postService.ObterTodos()
+                .Result
+                .Where(p => p.Usuario.UserName == currentUser);
             return View(posts);
         }
 
-        // GET: PostsController/Details/5
-        public ActionResult Details(int id)
+        // GET: Posts/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            var post = PostService.ObterLista().Find(p => p.Id == id.ToString());
+            if (id == null || await _postService.ObterTodos() == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _postService.ObterPorId((int)id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
             return View(post);
         }
 
-        // GET: PostsController/Create
-        public ActionResult Create()
+        // GET: Posts/Create
+        public IActionResult Create()
         {
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id");
             return View();
         }
 
-        // POST: PostsController/Create
+        // POST: Posts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([Bind("UsuarioId,DataPublicacao,Curtidas,ImagemUri,Titulo,Conteudo")] Post post)
         {
-            try
+            post.Usuario = await _usuarioService.ObterPorId(post.UsuarioId);
+            post.StampTime();
+            if (ModelState.IsValid)
             {
-                Loader.AdicionarPost(new Post
+                _postService.Adicionar(post);
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id", post.UsuarioId);
+            return View(post);
+        }
+
+        // GET: Posts/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || await _postService.ObterTodos() == null)
+            {
+                return NotFound();
+            }
+
+            var post = await _postService.ObterPorId((int)id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id", post.UsuarioId);
+            return View(post);
+        }
+
+        // POST: Posts/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UsuarioId,DataPublicacao,Curtidas,ImagemUri,Titulo,Conteudo")] Post post)
+        {
+            if (id != post.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    Id = collection["Id"],
-                    UsuarioId = collection["UsuarioId"],
-                    DataPublicacao = collection["DataPublicacao"],
-                    Curtidas = int.Parse(collection["Curtidas"]),
-                    ImagemUri = collection["ImagemUri"],
-                    Titulo = collection["Titulo"],
-                    Conteudo = collection["Conteudo"]
-                });
+                    await _postService.Editar(post);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PostExists(post.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            ViewData["UsuarioId"] = new SelectList(_usuarioService.ObterTodos().Result.Where(u => u.Email == User.Identity.Name), "Id", "Id", post.UsuarioId);
+            return View(post);
         }
 
-        // GET: PostsController/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Posts/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null || await _postService.ObterTodos() == null)
+            {
+                return NotFound();
+            }
+            var post = await _postService.ObterPorId((int)id);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
         }
 
-        // POST: PostsController/Edit/5
-        [HttpPost]
+        // POST: Posts/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
+            if (_postService.ObterTodos == null)
             {
-                return RedirectToAction(nameof(Index));
+                return Problem("Entity set 'ApplicationDbContext.Posts'  is null.");
             }
-            catch
+            var post = await _postService.ObterPorId((int)id);
+            if (post != null)
             {
-                return View();
+                await _postService.Deletar(post);
             }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: PostsController/Delete/5
-        public ActionResult Delete(int id)
+        private bool PostExists(int id)
         {
-            return View();
-        }
-
-        // POST: PostsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var posts = _postService.ObterTodos().Result;
+            return posts.Any(e => e.Id == id);
         }
     }
 }
