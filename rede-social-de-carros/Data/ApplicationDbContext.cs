@@ -11,8 +11,21 @@ namespace rede_social_de_carros.Data
         {
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Automovel> Automoveis { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure the relationship to set null on delete
+            modelBuilder.Entity<Usuario>()
+                .HasOne(u => u.Endereco)
+                .WithMany()
+                .HasForeignKey(u => u.EnderecoId)
+                .OnDelete(DeleteBehavior.SetNull);
+        }
+
+        public DbSet<Usuario>? Usuarios { get; set; }
+        public DbSet<Automovel>? Automoveis { get; set; }
+        public DbSet<Post>? Posts { get; set; }
+        public DbSet<Endereco>? Endereco { get; set; }
     }
 }

@@ -4,9 +4,28 @@
 @inject SignInManager<Usuario> SignInManager
 @inject UserManager<Usuario> UserManager
 
+@{
+    var currentUser = UserManager.GetUserAsync(User).Result;
+}
+
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        @if (currentUser != null)
+        {
+            @if (currentUser.EnderecoId == null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Enderecos" asp-action="Create">Registre seu endereço!</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Enderecos" asp-action="Edit" asp-route-id=@currentUser.EnderecoId>Edite seu endereço!</a>
+                </li>
+            }
+        }
         <li class="nav-item">
             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
         </li>

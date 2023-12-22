@@ -12,7 +12,7 @@ using rede_social_de_carros.Data;
 namespace rede_social_de_carros.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231221004058_Initial")]
+    [Migration("20231222230338_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,6 +205,35 @@ namespace rede_social_de_carros.Migrations
                     b.ToTable("Automoveis");
                 });
 
+            modelBuilder.Entity("rede_social_de_carros.Models.Endereco", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Localidade")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Logradouro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Endereco");
+                });
+
             modelBuilder.Entity("rede_social_de_carros.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -261,9 +290,8 @@ namespace rede_social_de_carros.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("EnderecoId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -299,6 +327,8 @@ namespace rede_social_de_carros.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EnderecoId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -382,6 +412,16 @@ namespace rede_social_de_carros.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("rede_social_de_carros.Models.Usuario", b =>
+                {
+                    b.HasOne("rede_social_de_carros.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("rede_social_de_carros.Models.Usuario", b =>

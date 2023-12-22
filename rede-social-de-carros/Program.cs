@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using rede_social_de_carros.Data;
 using rede_social_de_carros.Models;
+using rede_social_de_carros.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<PostService, PostService>();
 builder.Services.AddScoped<UsuarioService, UsuarioService>();
 builder.Services.AddScoped<AutomovelService, AutomovelService>();
+builder.Services.AddScoped<EnderecoService, EnderecoService>();
+builder.Services.AddHttpClient("ViaCep", client =>
+{
+    client.BaseAddress = new Uri("https://viacep.com.br/");
+});
 
 var app = builder.Build();
 
@@ -46,4 +52,3 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
-66
